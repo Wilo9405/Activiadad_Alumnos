@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alumnos>
+    <alumno>
+        <nombre>Juan</nombre>
+        <apellido>Pérez</apellido>
+        <curso>DAMD</curso>
+        <dni>L13990429</dni>
+    </alumno>
+    <alumno>
+        <nombre>María</nombre>
+        <apellido>González</apellido>
+        <curso>DAMD</curso>
+        <dni>L12983456</dni>
+    </alumno>
+    <alumno>
+        <nombre>Pedro</nombre>
+        <apellido>Martínez</apellido>
+        <curso>DAW</curso>
+        <dni>L11234567</dni>
+    </alumno>
+    <alumno>
+        <nombre>Laura</nombre>
+        <apellido>Sánchez</apellido>
+        <curso>ASIR</curso>
+        <dni>L14567890</dni>
+    </alumno>
+    <alumno>
+        <nombre>Carlos</nombre>
+        <apellido>Fernández</apellido>
+        <curso>DAW</curso>
+        <dni>L13579246</dni>
+    </alumno>
+    <alumno>
+        <nombre>Ana</nombre>
+        <apellido>Morales</apellido>
+        <curso>DAMD</curso>
+        <dni>L12365478</dni>
+    </alumno>
+</alumnos>
