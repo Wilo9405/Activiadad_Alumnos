@@ -45,7 +45,7 @@ public class XMLParser {
             }
 
         } catch (ParserConfigurationException | SAXException | IOException e) {
-            e.printStackTrace(); // Imprime el stack trace de cualquier excepción
+            e.printStackTrace(System.err); // Imprime el stack trace de cualquier excepción
         }
 
         return alumnos; // Retorna la lista de alumnos

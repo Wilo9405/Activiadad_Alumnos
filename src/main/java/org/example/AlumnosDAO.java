@@ -7,20 +7,20 @@ import java.sql.SQLException;
 
 public class AlumnosDAO {
 
-    private Connection connection;
+    private final Connection connection;
 
-    public AlumnosDAO(){
+    public AlumnosDAO() {
         this.connection = DBConnection.getConnection();
     }
 
-    public boolean alumnoExists(String dni){
+    public boolean alumnoExists(String dni) {
         String sql = "SELECT COUNT(*) FROM alumnos WHERE dni = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1,dni);
+            statement.setString(1, dni);
             ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()){
-                return resultSet.getInt(1)>0;
+            if (resultSet.next()) {
+                return resultSet.getInt(1) > 0;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -28,37 +28,53 @@ public class AlumnosDAO {
         return false;
     }
 
-    public  int insertAlumno(Alumno alumno) throws SQLException {
+    public int insertAlumno(Alumno alumno) throws SQLException {
 
-        if (alumnoExists(alumno.getDni())){
+        if (alumnoExists(alumno.getDni())) {
             return 0;
         }
 
         String querySQL = "INSERT INTO alumnos (nombre, apellido,dni,curso) VALUES(?,?,?,?)";
 
         PreparedStatement preparedStatement = connection.prepareStatement(querySQL);
-        preparedStatement.setString(1,alumno.getNombre());
-        preparedStatement.setString(2,alumno.getApellido());
-        preparedStatement.setString(3,alumno.getDni());
-        preparedStatement.setString(4,alumno.getCurso());
+        preparedStatement.setString(1, alumno.getNombre());
+        preparedStatement.setString(2, alumno.getApellido());
+        preparedStatement.setString(3, alumno.getDni());
+        preparedStatement.setString(4, alumno.getCurso());
 
         return preparedStatement.executeUpdate();
 
-        }
-
-        public int countAlumnos() throws SQLException {
-
-        String sql = "SELECT COUNT(*) FROM alumnos";
-        PreparedStatement statement=connection.prepareStatement(sql);
-
-        ResultSet resultSet = statement.executeQuery();
-
-        if (resultSet.next()){
-            return resultSet.getInt(1);
-        }
-
-        return 0;
     }
+
+    public void printAlumnos() throws SQLException {
+        String sql = "SELECT * FROM alumnos";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            System.out.println("ID: " + resultSet.getInt("id"));
+            System.out.println("Nombre: " + resultSet.getString("nombre"));
+            System.out.println("Apellido: " + resultSet.getString("apellido"));
+            System.out.println("DNI: " + resultSet.getString("dni"));
+            System.out.println("Curso: " + resultSet.getString("curso"));
+            System.out.println();
+        }
+
+    }
+
+//    public int countAlumnos() throws SQLException {
+//
+//        String sql = "SELECT COUNT(*) FROM alumnos";
+//        PreparedStatement statement = connection.prepareStatement(sql);
+//
+//        ResultSet resultSet = statement.executeQuery();
+//
+//        if (resultSet.next()) {
+//            return resultSet.getInt(1);
+//        }
+//
+//        return 0;
+//    }
+}
 
 //    public void deleteAllAlumnos() throws SQLException {
 //        String deleteSQL = "DELETE FROM alumnos"; // Borra todos los registros
@@ -77,8 +93,8 @@ public class AlumnosDAO {
 //        }
 //    }
 
-
-}
+//
+//}
 //    public void deleteAllAlumnos() throws SQLException {
 //        Connection connection = DBConnection.getConnection();
 //        String deleteSQL = "DELETE FROM alumnos";

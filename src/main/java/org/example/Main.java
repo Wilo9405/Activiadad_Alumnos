@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         AlumnosDAO dao = new AlumnosDAO();
-        String xmlPath = "C:\\Users\\wilson.perez\\IdeaProjects\\Actividad\\src\\main\\java\\org\\example\\alumnos.xml";
+        String xmlPath = ".\\src\\main\\java\\org\\example\\alumnos.xml";
         List<Alumno> alumnos = XMLParser.parseaAlumnosXML(xmlPath);
         int alumnosInsertados = 0;
 
@@ -21,10 +21,10 @@ public class Main {
             }
 
             System.out.println("Alumnos insertados: " + alumnosInsertados);
-            System.out.println("Total de alumnos en la base de datos: " + dao.countAlumnos());
+            dao.printAlumnos(); // Imprime los alumnos en la base de datos
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.err);
         }
     }
 }
